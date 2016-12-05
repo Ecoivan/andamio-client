@@ -1,14 +1,14 @@
 
 # andamio client (warning: under development)
 
-  * andamio is a client for Zylkanexy server and provides a template to easy build small and medium AJAX projects with Angular 1.x    
+  * andamio is a client for andamio server and provides a template to easy build small and medium AJAX projects with Angular 1.x    
   * Has a component-oriented design.
   * Because software development trends naturaly to be complex andamio is intended to be easy and keep simple all the process. 
   * andamio client is used to teach web application development to vocational students and to qualify them to join the workforce maket of developers in a tiny period of time. andamio was designed to avoid spaghetti code and complexity as far as possible, and brings an aid in structurate code development by copy-paste and adapt learning techniques.
 
   * Instructions:
-    * get started with Zylkanexy server
-    * clone the project and go against Zylkanexy server
+    * get started with andamio server
+    * clone the project and go against andamio server
 
 ## License
 
