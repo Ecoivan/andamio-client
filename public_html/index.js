@@ -1,4 +1,4 @@
-sisane.controller('IndexController', ['$scope', '$location', 'serverService', 'sessionService',
+andamio.controller('IndexController', ['$scope', '$location', 'serverService', 'sessionService',
     function ($scope, $location, serverService, sessionService) {
         $scope.username = "";
         $scope.isActive = function (viewLocation) {
