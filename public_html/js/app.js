@@ -1,21 +1,21 @@
 /*
  * Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
- * 
- * andamio: The stunning micro-library that helps you to develop easily 
+ *
+ * andamio: The stunning micro-library that helps you to develop easily
  *             AJAX web applications by using Angular.js 1.x & andamio-server
  * andamio is distributed under the MIT License (MIT)
  * Sources at https://github.com/rafaelaznar/andamio
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -34,19 +34,20 @@ var andamio = angular.module('myApp', [
     'Directives',
     'systemControllers',
     'userControllers',
+    'avisoControllers',
     'usertypeControllers',
     'postControllers',
     'productControllers',
     'producttypeControllers',
     'ui.bootstrap',
-    'ngSanitize'    
+    'ngSanitize'
 ]);
 //-------------
 //---html5 mode off; setting up pushState needs server urlrewritting, so quitting...-------
 //andamio.config(['$locationProvider', function ($locationProvider) {
 //        $locationProvider.html5Mode({
 //            //requireBase: false,
-//            enabled: true            
+//            enabled: true
 //        });
 //    }]);
 //-------------
@@ -62,7 +63,7 @@ andamio.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/home', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
         $routeProvider.when('/license', {templateUrl: 'js/system/license.html', controller: 'LicenseController'});
         $routeProvider.when('/passchange', {templateUrl: 'js/system/passchange.html', controller: 'PasschangeController'});
-        //------------       
+        //------------
         $routeProvider.when('/user/view/:id', {templateUrl: 'js/user/view.html', controller: 'UserViewController'});
         $routeProvider.when('/user/new/:id?', {templateUrl: 'js/user/new.html', controller: 'UserNewController'});
         $routeProvider.when('/user/edit/:id', {templateUrl: 'js/user/edit.html', controller: 'UserEditController'});
@@ -97,6 +98,13 @@ andamio.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/producttype/remove/:id', {templateUrl: 'js/producttype/remove.html', controller: 'ProducttypeRemoveController'});
         $routeProvider.when('/producttype/plist/:page?/:rpp?', {templateUrl: 'js/producttype/plist.html', controller: 'ProducttypePListController'});
         $routeProvider.when('/producttype/selection/:page?/:rpp?', {templateUrl: 'js/producttype/selection.html', controller: 'ProducttypeSelectionController'});
+        //------------
+        $routeProvider.when('/aviso/view/:id', {templateUrl: 'js/aviso/view.html', controller: 'AvisoViewController'});
+        $routeProvider.when('/aviso/new/:id?', {templateUrl: 'js/aviso/new.html', controller: 'AvisoNewController'});
+        $routeProvider.when('/aviso/edit/:id', {templateUrl: 'js/aviso/edit.html', controller: 'AvisoEditController'});
+        $routeProvider.when('/aviso/remove/:id', {templateUrl: 'js/aviso/remove.html', controller: 'AvisoRemoveController'});
+        $routeProvider.when('/aviso/plist/:page?/:rpp?', {templateUrl: 'js/aviso/plist.html', controller: 'AvisoPListController'});
+        $routeProvider.when('/aviso/selection/:page?/:rpp?', {templateUrl: 'js/aviso/selection.html', controller: 'AvisoSelectionController'});
         //------------
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
@@ -138,6 +146,7 @@ var moduloPost = angular.module('postControllers', []);
 var moduloUsertype = angular.module('usertypeControllers', []);
 var moduloProduct = angular.module('productControllers', []);
 var moduloProducttype = angular.module('producttypeControllers', []);
+var moduloAviso = angular.module('avisoControllers', []);
 //-------------
 var moduloDirectivas = angular.module('Directives', []);
 var moduloServicios = angular.module('Services', []);

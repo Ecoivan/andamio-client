@@ -85,7 +85,7 @@ moduloAviso.controller('AvisoNewController', ['$scope', '$routeParams', '$locati
         };
         $scope.$watch('bean.obj_tipousuario.id', function () {
             if ($scope.bean) {
-                if ($scope.bean.obj_tipodocumento.id) {
+                if ($scope.bean.obj_tipousuario.id) {
                     serverService.promise_getOne('tipousuario', $scope.bean.obj_tipousuario.id).then(function (response) {
                         var old_id = $scope.bean.obj_tipousuario.id;
                         if (response.data.message.id != 0) {

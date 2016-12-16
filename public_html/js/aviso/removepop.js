@@ -28,12 +28,12 @@
 'use strict';
 
 
-moduloDocumento.controller('DocumentoRemovepopController', ['$scope', '$routeParams', 'serverService', 'documentoService', '$location', '$uibModalInstance', 'id',
-    function ($scope, $routeParams, serverService, documentoService, $location, $uibModalInstance, id) {
-        $scope.fields = documentoService.getFields();
-        $scope.obtitle = documentoService.getObTitle();
-        $scope.icon = documentoService.getIcon();
-        $scope.ob = documentoService.getTitle();
+moduloAviso.controller('AvisoRemovepopController', ['$scope', '$routeParams', 'serverService', 'avisoService', '$location', '$uibModalInstance', 'id',
+    function ($scope, $routeParams, serverService, avisoService, $location, $uibModalInstance, id) {
+        $scope.fields = avisoService.getFields();
+        $scope.obtitle = avisoService.getObTitle();
+        $scope.icon = avisoService.getIcon();
+        $scope.ob = avisoService.getTitle();
         $scope.title = "Borrado de " + $scope.obtitle;
         $scope.id = id;
         $scope.status = null;
