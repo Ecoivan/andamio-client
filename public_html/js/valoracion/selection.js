@@ -28,12 +28,12 @@
 
 'use strict';
 
-moduloAviso.controller('AvisoSelectionController', ['$scope', '$uibModalInstance', '$routeParams', 'avisoService', 'serverService', '$location', 'sharedSpaceService',
-    function ($scope, $modalInstance, $routeParams, avisoService, serverService, $location, sharedSpaceService) {
-        $scope.fields = avisoService.getFields();
-        $scope.obtitle = avisoService.getObTitle();
-        $scope.icon = avisoService.getIcon();
-        $scope.ob = avisoService.getTitle();
+moduloValoracion.controller('ValoracionSelectionController', ['$scope', '$uibModalInstance', '$routeParams', 'valoracionService', 'serverService', '$location', 'sharedSpaceService',
+    function ($scope, $modalInstance, $routeParams, valoracionService, serverService, $location, sharedSpaceService) {
+        $scope.fields = valoracionService.getFields();
+        $scope.obtitle = valoracionService.getObTitle();
+        $scope.icon = valoracionService.getIcon();
+        $scope.ob = valoracionService.getTitle();
         $scope.title = "Selección de " + $scope.obtitle;
         $scope.op = "selection";
         $scope.numpage = 1;

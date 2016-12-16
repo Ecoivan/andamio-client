@@ -103,12 +103,8 @@ THE SOFTWARE.
                                     <tbody>
                                         <tr ng-repeat="obj in page| filter:searchText">
                                             <td ng-repeat="f in fields" ng-show="f.visible" class="text-right">
-
                                                 <div ng-show="f.visible && f.type == 'id'"><b>{{obj[f.name]}}</b></div>
                                                 <div ng-show="f.visible && f.type == 'text'" class="text-left">{{obj[f.name]|clipString}}</div>
-                                                <div ng-show="f.visible && f.type == 'date'" class="text-center">{{obj[f.name]}}</div>
-                                                <!------------------------------------------------>
-                                                <div ng-show="f.visible && f.name == 'obj_tipousuario'" class="text-center">{{obj.obj_tipousuario.descripcion}}</div>
                                             </td>
                                             <td plistoperationbarspa></tdspa>
                                                 <button ng-click="count = count + 1;alert(count)" ng-init="count = 0">

@@ -35,6 +35,7 @@ var andamio = angular.module('myApp', [
     'systemControllers',
     'userControllers',
     'avisoControllers',
+    'valoracionControllers',
     'usertypeControllers',
     'postControllers',
     'productControllers',
@@ -106,6 +107,13 @@ andamio.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/aviso/plist/:page?/:rpp?', {templateUrl: 'js/aviso/plist.html', controller: 'AvisoPListController'});
         $routeProvider.when('/aviso/selection/:page?/:rpp?', {templateUrl: 'js/aviso/selection.html', controller: 'AvisoSelectionController'});
         //------------
+        $routeProvider.when('/valoracion/view/:id', {templateUrl: 'js/valoracion/view.html', controller: 'ValoracionViewController'});
+        $routeProvider.when('/valoracion/new/:id?', {templateUrl: 'js/valoracion/new.html', controller: 'ValoracionNewController'});
+        $routeProvider.when('/valoracion/edit/:id', {templateUrl: 'js/valoracion/edit.html', controller: 'ValoracionEditController'});
+        $routeProvider.when('/valoracion/remove/:id', {templateUrl: 'js/valoracion/remove.html', controller: 'ValoracionRemoveController'});
+        $routeProvider.when('/valoracion/plist/:page?/:rpp?', {templateUrl: 'js/valoracion/plist.html', controller: 'ValoracionPListController'});
+        $routeProvider.when('/valoracion/selection/:page?/:rpp?', {templateUrl: 'js/valoracion/selection.html', controller: 'ValoracionSelectionController'});
+        //------------
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
 //-------------
@@ -147,6 +155,7 @@ var moduloUsertype = angular.module('usertypeControllers', []);
 var moduloProduct = angular.module('productControllers', []);
 var moduloProducttype = angular.module('producttypeControllers', []);
 var moduloAviso = angular.module('avisoControllers', []);
+var moduloValoracion = angular.module('valoracionControllers', []);
 //-------------
 var moduloDirectivas = angular.module('Directives', []);
 var moduloServicios = angular.module('Services', []);
