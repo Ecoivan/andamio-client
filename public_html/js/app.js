@@ -40,6 +40,7 @@ var andamio = angular.module('myApp', [
     'postControllers',
     'productControllers',
     'producttypeControllers',
+    'prioridadControllers',
     'ui.bootstrap',
     'ngSanitize'
 ]);
@@ -114,6 +115,13 @@ andamio.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/valoracion/plist/:page?/:rpp?', {templateUrl: 'js/valoracion/plist.html', controller: 'ValoracionPListController'});
         $routeProvider.when('/valoracion/selection/:page?/:rpp?', {templateUrl: 'js/valoracion/selection.html', controller: 'ValoracionSelectionController'});
         //------------
+        $routeProvider.when('/prioridad/view/:id', {templateUrl: 'js/prioridad/view.html', controller: 'PrioridadViewController'});
+        $routeProvider.when('/prioridad/new/:id?', {templateUrl: 'js/prioridad/new.html', controller: 'PrioridadNewController'});
+        $routeProvider.when('/prioridad/edit/:id', {templateUrl: 'js/prioridad/edit.html', controller: 'PrioridadEditController'});
+        $routeProvider.when('/prioridad/remove/:id', {templateUrl: 'js/prioridad/remove.html', controller: 'PrioridadRemoveController'});
+        $routeProvider.when('/prioridad/plist/:page?/:rpp?', {templateUrl: 'js/prioridad/plist.html', controller: 'PrioridadPListController'});
+        $routeProvider.when('/prioridad/selection/:page?/:rpp?', {templateUrl: 'js/prioridad/selection.html', controller: 'PrioridadSelectionController'});
+        //------------
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
 //-------------
@@ -156,6 +164,7 @@ var moduloProduct = angular.module('productControllers', []);
 var moduloProducttype = angular.module('producttypeControllers', []);
 var moduloAviso = angular.module('avisoControllers', []);
 var moduloValoracion = angular.module('valoracionControllers', []);
+var moduloPrioridad = angular.module('prioridadControllers', []);
 //-------------
 var moduloDirectivas = angular.module('Directives', []);
 var moduloServicios = angular.module('Services', []);
