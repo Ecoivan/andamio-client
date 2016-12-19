@@ -117,12 +117,11 @@ THE SOFTWARE.
                                                 <td ng-repeat="f in fields" ng-show="f.visible"  class="text-right">
                                                     <div ng-show="f.visible && f.type == 'id'"><b>{{obj[f.name]}}</b></div>
                                                     <div ng-show="f.visible && f.type == 'date'" class="text-center">{{obj[f.name]}}</div>
-                                                    <div ng-show="f.visible && f.type == 'integer'" class="text-center">{{obj[f.name]}}</div>
-                                                    <div ng-show="f.visible && f.type == 'decimal'" class="text-center">{{obj[f.name]}}</div>
-                                                    <div ng-show="f.visible && f.type == 'text'" class="text-left">{{obj[f.name]|clipString}}</div>
-                                                    <div ng-show="f.visible && f.type == 'boolean'" class="text-center" ng-bind-html="obj[f.name] | booleanizate"></div>
+                                                    <div ng-show="f.visible && f.type == 'text'" class="text-left">{{obj[f.name]}}</div>
+                                                    <div ng-show="f.visible && f.type == 'textarea'" class="text-left">{{obj[f.name]|clipString}}</div>
                                                     <!------------------------------------------------>
-                                                    <div ng-show="f.visible && f.name == 'obj_user'" class="text-center"><a href="#/user/view/{{obj.obj_user.id}}">{{obj.obj_user.name}} {{obj.obj_user.surname}}</a></div>
+                                                    <div ng-show="f.visible && f.name == 'obj_usuario'" class="text-center"><a href="#/usuario/view/{{obj.obj_usuario.id}}">{{obj.obj_usuario.nombre}} {{obj.obj_usuario.primerapellido}}</a></div>
+                                                    <div ng-show="f.visible && f.name == 'obj_titulo'" class="text-center"><a href="#/titulo/view/{{obj.obj_titulo.id}}">{{obj.obj_titulo.descripcion}}</a></div>
                                                 </td>                       
                                                 <td>
                                                     <div class="btn-toolbar" role="toolbar">

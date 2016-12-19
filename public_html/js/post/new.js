@@ -39,9 +39,12 @@ moduloPost.controller('PostNewController', ['$scope', '$routeParams', '$location
         $scope.status = null;
         $scope.debugging = serverService.debugging();
         $scope.bean = {id: 0};
-        $scope.bean.obj_user = {"id": 0};
+        $scope.bean.obj_titulo = {"id": 0};
+        $scope.show_obj_titulo = true;
+        $scope.bean.obj_usuario = {"id": 0};
+        $scope.show_obj_usuario = true;
         //----
-        if ($routeParams.id_user) {
+        /*if ($routeParams.id_user) {
             serverService.promise_getOne('user', $routeParams.id_user).then(function (response) {
                 if (response.data.message.id != 0) {
                     $scope.bean.obj_user = response.data.message;
@@ -51,10 +54,9 @@ moduloPost.controller('PostNewController', ['$scope', '$routeParams', '$location
             });
         } else {
             $scope.show_obj_user = true;
-        }
+        }*/
         $scope.save = function () {
-            $scope.bean.creation = $filter('date')($scope.bean.creation, "dd/MM/yyyy");
-            $scope.bean.modification = $filter('date')($scope.bean.modification, "dd/MM/yyyy");
+            $scope.bean.fecha = $filter('date')($scope.bean.fecha, "dd/MM/yyyy");
             var jsonToSend = {json: JSON.stringify(serverService.array_identificarArray($scope.bean))};
             serverService.promise_setOne($scope.ob, jsonToSend).then(function (response) {
                 if (response.status == 200) {
@@ -91,16 +93,30 @@ moduloPost.controller('PostNewController', ['$scope', '$routeParams', '$location
                 $scope.bean[nameForeign].id = modalResult;
             });
         };
-        $scope.$watch('bean.obj_user.id', function () {
+        $scope.$watch('bean.obj_usuario.id', function () {
             if ($scope.bean) {
-                serverService.promise_getOne('user', $scope.bean.obj_user.id).then(function (response) {
-                    var old_id = $scope.bean.obj_user.id;
-                    $scope.bean.obj_user = response.data.message;
+                serverService.promise_getOne('usuario', $scope.bean.obj_usuario.id).then(function (response) {
+                    var old_id = $scope.bean.obj_usuario.id;
+                    $scope.bean.obj_usuario = response.data.message;
                     if (response.data.message.id != 0) {
-                        $scope.outerForm.obj_user.$setValidity('exists', true);
+                        $scope.outerForm.obj_usuario.$setValidity('exists', true);
                     } else {
-                        $scope.outerForm.obj_user.$setValidity('exists', false);
-                        $scope.bean.obj_user.id = old_id;
+                        $scope.outerForm.obj_usuario.$setValidity('exists', false);
+                        $scope.bean.obj_usuario.id = old_id;
+                    }
+                });
+            }
+        });
+        $scope.$watch('bean.obj_titulo.id', function () {
+            if ($scope.bean) {
+                serverService.promise_getOne('titulo', $scope.bean.obj_titulo.id).then(function (response) {
+                    var old_id = $scope.bean.obj_titulo.id;
+                    $scope.bean.obj_titulo = response.data.message;
+                    if (response.data.message.id != 0) {
+                        $scope.outerForm.obj_titulo.$setValidity('exists', true);
+                    } else {
+                        $scope.outerForm.obj_titulo.$setValidity('exists', false);
+                        $scope.bean.obj_titulo.id = old_id;
                     }
                 });
             }
@@ -118,12 +134,12 @@ moduloPost.controller('PostNewController', ['$scope', '$routeParams', '$location
             opened: false
         };
         //datepicker 2
-        $scope.open2 = function () {
+        /*$scope.open2 = function () {
             $scope.popup2.opened = true;
             $scope.outerForm.modification.$pristine = false;
         };
         $scope.popup2 = {
             opened: false
-        };
+        };*/
     }]);
 

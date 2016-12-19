@@ -40,16 +40,17 @@ moduloPost.controller('PostEditController', ['$scope', '$routeParams', '$locatio
         $scope.error = true;
         $scope.debugging = serverService.debugging();
         $scope.bean = {};
-        $scope.bean.obj_usertype = {"id": 0};
-        $scope.show_obj_usertype = true;
+        $scope.bean.obj_titulo = {"id": 0};
+        $scope.show_obj_titulo = true;
+        $scope.bean.obj_usuario = {"id": 0};
+        $scope.show_obj_usuario = true;
         $scope.id = $routeParams.id;
         serverService.promise_getOne($scope.ob, $scope.id).then(function (response) {
             if (response.status == 200) {
                 if (response.data.status == 200) {
                     $scope.status = null;
                     $scope.bean = response.data.message;
-                    $scope.bean.creation = serverService.date_toDate($scope.bean.creation);
-                    $scope.bean.modification = serverService.date_toDate($scope.bean.modification);
+                    $scope.bean.fecha = serverService.date_toDate($scope.bean.fecha);
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
                 }
@@ -60,8 +61,7 @@ moduloPost.controller('PostEditController', ['$scope', '$routeParams', '$locatio
             $scope.status = "Error en la recepción de datos del servidor";
         });
         $scope.save = function () {
-            $scope.bean.creation = $filter('date')($scope.bean.creation, "dd/MM/yyyy");
-            $scope.bean.modification = $filter('date')($scope.bean.modification, "dd/MM/yyyy");
+            $scope.bean.fecha = $filter('date')($scope.bean.fecha, "dd/MM/yyyy");
             var jsonToSend = {json: JSON.stringify(serverService.array_identificarArray($scope.bean))};
             serverService.promise_setOne($scope.ob, jsonToSend).then(function (response) {
                 if (response.status == 200) {
@@ -98,16 +98,30 @@ moduloPost.controller('PostEditController', ['$scope', '$routeParams', '$locatio
                 $scope.bean[nameForeign].id = modalResult;
             });
         };
-        $scope.$watch('bean.obj_user.id', function () {
+        $scope.$watch('bean.obj_usuario.id', function () {
             if ($scope.bean) {
-                serverService.promise_getOne('user', $scope.bean.obj_user.id).then(function (response) {
-                    var old_id = $scope.bean.obj_user.id;
-                    $scope.bean.obj_user = response.data.message;
+                serverService.promise_getOne('usuario', $scope.bean.obj_usuario.id).then(function (response) {
+                    var old_id = $scope.bean.obj_usuario.id;
+                    $scope.bean.obj_usuario = response.data.message;
                     if (response.data.message.id != 0) {
-                        $scope.outerForm.obj_user.$setValidity('exists', true);
+                        $scope.outerForm.obj_usuario.$setValidity('exists', true);
                     } else {
-                        $scope.outerForm.obj_user.$setValidity('exists', false);
-                        $scope.bean.obj_user.id = old_id;
+                        $scope.outerForm.obj_usuario.$setValidity('exists', false);
+                        $scope.bean.obj_usuario.id = old_id;
+                    }
+                });
+            }
+        });
+        $scope.$watch('bean.obj_titulo.id', function () {
+            if ($scope.bean) {
+                serverService.promise_getOne('titulo', $scope.bean.obj_titulo.id).then(function (response) {
+                    var old_id = $scope.bean.obj_titulo.id;
+                    $scope.bean.obj_titulo = response.data.message;
+                    if (response.data.message.id != 0) {
+                        $scope.outerForm.obj_titulo.$setValidity('exists', true);
+                    } else {
+                        $scope.outerForm.obj_titulo.$setValidity('exists', false);
+                        $scope.bean.obj_titulo.id = old_id;
                     }
                 });
             }

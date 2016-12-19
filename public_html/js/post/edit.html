@@ -55,37 +55,46 @@ THE SOFTWARE.
                                                disabled="disabled" />
                                     </div>
                                 </div>
-                                <!------------------------------------------------->                            
-                                <div ng-show="f.type == 'textarea'" 
-                                     id="{{f.name}}-group" 
-                                     class="form-group" 
-                                     ng-class="{'has-error': 
-                                                             (outerForm[f.name].$error.required)}">
-                                    <label class="col-sm-2 control-label" for="{{f.name}}">
+                                <!------------------------------------------------->
+                                <div class="form-group"   
+                                     ng-show="f.name == 'fecha'"
+                                     id="fecha-group" 
+                                     ng-class="{''has-error': (outerForm[f.name].$error.pattern && !outerForm[f.name].$pristine) ||
+                                                             (outerForm[f.name].$error.required && !outerForm[f.name].$pristine)}">
+                                    <label class="col-sm-2 control-label" for="fecha">
                                         <span ng-show="{{f.required}}">*</span>
-                                        {{f.longname}}:
+                                        {{f.longname}}
                                     </label>
-                                    <div class="control col-sm-8">                                   
-                                        <textarea ng-model="bean[f.name]"
-                                               type="text"
-                                               class="form-control"                                           
-                                               id="{{f.name}}"
-                                               name="{{f.name}}"     
-                                               
-                                               placeholder="{{f.name}}"                                             
-                                                                                                                                            
-                                               ng-required="{{f.required}}"
-                                               rows="10"></textarea>
-                                        <span class="help-block" ng-show="outerForm[f.name].$error.required">El campo es obligatorio</span>
-                                        
+                                    <div class="control col-sm-3">
+                                        <div class="input-group date" id="fecha_group">
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   placeholder="{{f.longname}}"
+                                                   uib-datepicker-popup="dd/MM/yyyy" 
+                                                   ng-model="bean.fecha" 
+                                                   is-open="popup1.opened" 
+                                                   datepicker-options="dateOptions" 
+                                                   ng-required="true" 
+                                                   close-text="Cerrar"
+                                                   id="fecha"
+                                                   name="fecha"                                      
+                                                   />                               
+                                            <span class="input-group-addon" ng-click="open1()">
+                                                <i class="glyphicon glyphicon-calendar"></i>
+                                            </span>                                                                                    
+                                        </div>
+                                        <span class="help-block" ng-show="outerForm.fecha.$error.required">El campo fecha es obligatorio</span>
+                                        <em>{{bean.fecha| date:'fullDate' }}</em>
                                     </div>
                                 </div>
-                                <!------------------------------------------------->   
-                                <div ng-show="f.type == 'text'" 
+                                <!-------------------------------------------------> 
+                                
+                                <!------------------------------------------------->                            
+                                 <div ng-show="f.type == 'text'" 
                                      id="{{f.name}}-group" 
                                      class="form-group" 
-                                     ng-class="{'has-error': (outerForm[f.name].$error.pattern) ||
-                                                             (outerForm[f.name].$error.required)}">
+                                     ng-class="{'has-error': (outerForm[f.name].$error.pattern && !outerForm[f.name].$pristine) ||
+                                                             (outerForm[f.name].$error.required && !outerForm[f.name].$pristine)}">
                                     <label class="col-sm-2 control-label" for="{{f.name}}">
                                         <span ng-show="{{f.required}}">*</span>
                                         {{f.longname}}:
@@ -101,130 +110,119 @@ THE SOFTWARE.
                                                maxlength="{{f.maxlength}}"                                                                                               
                                                ng-required="{{f.required}}"                                                
                                                />
-                                        <span class="help-block" ng-show="outerForm[f.name].$error.required">El campo es obligatorio</span>
-                                        <span class="help-block" ng-show="outerForm[f.name].$error.pattern">El campo no tiene formato adecuado: {{f.help}}</span>
+                                        <span class="help-block" ng-show="!outerForm[f.name].$pristine && outerForm[f.name].$error.required">El campo es obligatorio</span>
+                                        <span class="help-block" ng-show="!outerForm[f.name].$pristine && outerForm[f.name].$error.pattern">El campo no tiene formato adecuado: {{f.help}}</span>
                                     </div>
-                                </div>
-                                <!------------------------------------------------->
-                                <div ng-show="f.type == 'boolean'"  id="{{f.name}}-group" class="form-group">
-                                    <label class="col-sm-2 control-label" for="{{f.name}}">{{f.longname}}:</label>
-                                    <div class="control col-sm-1">
-                                        <input  ng-model="bean[f.name]" type="checkbox" id="destacado" name="destacado" value="true" checked="checked">
-                                    </div>
-                                </div>
-                                <!------------------------------------------------->
-                                <div class="form-group"   
-                                     ng-show="f.name == 'creation'"
-                                     id="creation-group" 
-                                     ng-class="{'has-error': (outerForm.creation.$error.required && !outerForm.creation.$pristine) ||
-                                                             (!bean.creation && !outerForm.creation.$pristine)}">
-                                    <label class="col-sm-2 control-label" for="creation">
-                                        <span ng-show="{{f.required}}">*</span>
-                                        {{f.longname}}
-                                    </label>
-                                    <div class="control col-sm-3">
-                                        <div class="input-group date" id="creation_group">
-                                            <input type="text" 
-                                                   class="form-control" 
-                                                   placeholder="{{f.longname}}"
-                                                   uib-datepicker-popup="dd/MM/yyyy" 
-                                                   ng-model="bean.creation" 
-                                                   is-open="popup1.opened" 
-                                                   datepicker-options="dateOptions" 
-                                                   ng-required="true" 
-                                                   close-text="Cerrar"
-                                                   id="creation"
-                                                   name="creation"                                      
-                                                   />                               
-                                            <span class="input-group-addon" ng-click="open1()">
-                                                <i class="glyphicon glyphicon-calendar"></i>
-                                            </span>                                                                                    
-                                        </div>
-                                        <span class="help-block" ng-show="!outerForm.creation.$pristine && outerForm.creation.$error.required">El campo fecha de creación es obligatorio</span>
-                                        <em>{{bean.creation| date:'fullDate' }}</em>
-                                    </div>
-                                </div>
-                                <!------------------------------------------------->
-                                <div class="form-group"   
-                                     ng-show="f.name == 'modification'"
-                                     id="modification-group" 
-                                     ng-class="{'has-error': (outerForm.modification.$error.required && !outerForm.modification.$pristine) ||
-                                                             (!bean.modification && !outerForm.modification.$pristine)}">
-                                    <label class="col-sm-2 control-label" for="modification">
-                                        <span ng-show="{{f.required}}">*</span>
-                                        {{f.longname}}
-                                    </label>
-                                    <div class="control col-sm-3">
-                                        <div class="input-group date" id="modification_group">
-                                            <input type="text" 
-                                                   class="form-control" 
-                                                   placeholder="{{f.longname}}"
-                                                   uib-datepicker-popup="dd/MM/yyyy" 
-                                                   ng-model="bean.modification" 
-                                                   is-open="popup2.opened" 
-                                                   datepicker-options="dateOptions" 
-                                                   ng-required="true" 
-                                                   close-text="Cerrar"
-                                                   id="modification"
-                                                   name="modification"                                      
-                                                   />                               
-                                            <span class="input-group-addon" ng-click="open2()">
-                                                <i class="glyphicon glyphicon-calendar"></i>
-                                            </span>                                                                                    
-                                        </div>
-                                        <span class="help-block" ng-show="!outerForm.modification.$pristine && outerForm.modification.$error.required">El campo fecha de creación es obligatorio</span>
-                                        <em>{{bean.modification| date:'fullDate' }}</em>
-                                    </div>
-                                </div>
+                                 </div>
                                 <!------------------------------------------------->                                
                                 <div class="form-group"                                 
-                                     ng-show="show_obj_user && (f.name == 'obj_user')"
-                                     ng-class="{'has-error': (outerForm.obj_user.$error.required ||
-                                                             outerForm.obj_user.$error.exists ||
-                                                             outerForm.obj_user.$error.validatemin)
-                                                             && !outerForm.obj_user.$pristine}"
-                                     ng-show="show_obj_user">                                                                                                                                   
-                                    <label class="col-sm-2 control-label" for="obj_user">
-                                        <span ng-show="{{f.required}}">*</span>
-                                        {{f.longname}}
-                                    </label>
+                                     ng-show="show_obj_titulo && (f.name == 'obj_titulo')"
+                                     ng-class="{'has-error': (outerForm.obj_titulo.$error.required ||
+                                                             outerForm.obj_titulo.$error.exists ||
+                                                             outerForm.obj_titulo.$error.validatemin)
+                                                             && !outerForm.obj_titulo.$pristine}"
+                                     ng-show="show_obj_titulo">                                                                                                                                    
+                                    <label class="col-sm-2 control-label" for="obj_titulo">Título:</label>
                                     <div class="control col-sm-3">
-                                        <div class="input-group foreign" id="obj_user_group">
-                                            <span class="input-group-addon" id="obj_user_button" ng-click="chooseOne('obj_user', 'user', 'UserSelectionController')">
+                                        <div class="input-group foreign" id="obj_titulo_group">
+                                            <span class="input-group-addon" id="obj_titulo_button" ng-click="chooseOne('obj_titulo', 'titulo', 'TituloSelectionController')">
                                                 <span class="glyphicon glyphicon-search">
                                                 </span>
                                             </span>                                        
                                             <input type="text" 
                                                    ng-model-options="{debounce: 1000}" 
-                                                   ng-change="obj_user_change" 
-                                                   ng-model="bean.obj_user.id" 
+                                                   ng-change="obj_titulo_change" 
+                                                   ng-model="bean.obj_titulo.id" 
+                                                   validatemin="1" 
+                                                   ng-required="true"  
+                                                   aria-describedby="basic-addon2" 
+                                                   class="form-control" 
+                                                   id="obj_titulo" 
+                                                   name="obj_titulo"
+                                                   size="5" 
+                                                   maxlength="5">                                        
+                                            <span class="input-group-addon">
+                                                <span>{{bean.obj_titulo.descripcion}}</span>
+                                            </span>                                       
+                                        </div>
+                                        <span class="help-block" ng-show="!outerForm.obj_titulo.$pristine && outerForm.obj_titulo.$error.required">El título es obligatorio</span>
+                                        <span class="help-block" ng-show="!outerForm.obj_titulo.$pristine && outerForm.obj_titulo.$error.validatemin">Debes elegir un título</span>
+                                        <span class="help-block" ng-show="!outerForm.obj_titulo.$pristine && outerForm.obj_titulo.$error.exists">El título no existe</span>
+                                    </div>
+                                </div> 
+                                <!------------------------------------------------->
+                                <div class="form-group"                                 
+                                     ng-show="show_obj_usuario && (f.name == 'obj_usuario')"
+                                     ng-class="{'has-error': (outerForm.obj_usuario.$error.required ||
+                                                             outerForm.obj_usuario.$error.exists ||
+                                                             outerForm.obj_usuario.$error.validatemin)
+                                                             && !outerForm.obj_usuario.$pristine}"
+                                     ng-show="show_obj_usuario">                                                                                                                                    
+                                    <label class="col-sm-2 control-label" for="obj_usuario">Usuario:</label>
+                                    <div class="control col-sm-3">
+                                        <div class="input-group foreign" id="obj_usuario_group">
+                                            <span class="input-group-addon" id="obj_usuario_button" ng-click="chooseOne('obj_usuario', 'usuario', 'UsuarioSelectionController')">
+                                                <span class="glyphicon glyphicon-search">
+                                                </span>
+                                            </span>                                        
+                                            <input type="text" 
+                                                   ng-model-options="{debounce: 1000}" 
+                                                   ng-change="obj_usuario_change" 
+                                                   ng-model="bean.obj_usuario.id" 
                                                    validatemin="1" 
                                                    ng-required="true"  
                                                    aria-describedby="basic-addon2" 
                                                    class="form-control" 
                                                    id="obj_usuario" 
-                                                   name="obj_user"
+                                                   name="obj_usuario"
                                                    size="5" 
                                                    maxlength="5">                                        
                                             <span class="input-group-addon">
-                                                <span>{{bean.obj_user.name}} {{bean.obj_user.surname}}</span>
+                                                <span>{{bean.obj_usuario.nombre}} {{bean.obj_usuario.primerapellido}}</span>
                                             </span>                                       
                                         </div>
-                                        <span class="help-block" ng-show="!outerForm.obj_user.$pristine && outerForm.obj_user.$error.required">El usuario es obligatorio</span>
-                                        <span class="help-block" ng-show="!outerForm.obj_user.$pristine && outerForm.obj_user.$error.validatemin">Debes elegir un usuario</span>
-                                        <span class="help-block" ng-show="!outerForm.obj_user.$pristine && outerForm.obj_user.$error.exists">El usuario no existe</span>
+                                        <span class="help-block" ng-show="!outerForm.obj_usuario.$pristine && outerForm.obj_usuario.$error.required">El usuario es obligatorio</span>
+                                        <span class="help-block" ng-show="!outerForm.obj_usuario.$pristine && outerForm.obj_usuario.$error.validatemin">Debes elegir un usuario</span>
+                                        <span class="help-block" ng-show="!outerForm.obj_usuario.$pristine && outerForm.obj_usuario.$error.exists">El usuario no existe</span>
                                     </div>
                                 </div> 
                                 <!------------------------------------------------->
+                                
                             </div>
+                            
+                            
+                            <div 
+                                     id="contenido-group" 
+                                     class="form-group" 
+                                     ng-class="{'has-error' : (outerForm.contenido.$error.pattern && !outerForm.contenido.$pristine) || (outerForm.contenido.$error.required && !outerForm.contenido.$pristine)}">
+                                    <label class="col-sm-2 control-label" for="contenido">
+                                        <span>*</span>
+                                        Contenido:
+                                    </label>
+                                    <div class="control col-sm-8">                                   
+                                        <textarea ng-model="bean.contenido"
+                                               type="textarea"
+                                               class="form-control"                                           
+                                               id="contenido"
+                                               name="contenido"     
+                                               ng-pattern="f.pattern"
+                                               placeholder="contenido"                                             
+                                               maxlength="{{f.maxlength}}"                                                                                               
+                                               ng-required="required"                                                
+                                               ></textarea>  
+                                        <span class="help-block" ng-show="!outerForm.contenido.$pristine && outerForm.contenido.$error.required">El campo es obligatorio</span>
+                                        <span class="help-block" ng-show="!outerForm.contenido.$pristine && outerForm.contenido.$error.pattern">El campo no tiene formato adecuado:</span>
+                                    </div>
+                                </div>
+                            
                             <div class="control-group text-right">
                                 <div class="controls">
                                     <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
-                                    <a class="btn btn-default" ng-click="plist()">Ir al listado de usuarios</a>
+                                    <a class="btn btn-default" ng-click="plist()">Ir al listado de posts</a>
                                     <a class="btn btn-default" ng-click="close()">Cerrar</a>
                                 </div>
                             </div>
-                        </form>               
+                        </form>                
                         <div ng-show="status">                        
                             <div class="alert alert-success" ng-show="response.status == 200">
                                 <h2>{{status}}</h2>
