@@ -41,6 +41,7 @@ var andamio = angular.module('myApp', [
     'productControllers',
     'producttypeControllers',
     'prioridadControllers',
+    'proyectoControllers',
     'estadoControllers',
     'ui.bootstrap',
     'ngSanitize'
@@ -130,6 +131,14 @@ andamio.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/estado/plist/:page?/:rpp?', {templateUrl: 'js/estado/plist.html', controller: 'EstadoPListController'});
         $routeProvider.when('/estado/selection/:page?/:rpp?', {templateUrl: 'js/estado/selection.html', controller: 'EstadoSelectionController'});
         //------------
+        $routeProvider.when('/proyecto/view/:id', {templateUrl: 'js/proyecto/view.html', controller: 'ProyectoViewController'});
+        $routeProvider.when('/proyecto/new/:id?', {templateUrl: 'js/proyecto/new.html', controller: 'ProyectoNewController'});
+        $routeProvider.when('/proyecto/edit/:id', {templateUrl: 'js/proyecto/edit.html', controller: 'ProyectoEditController'});
+        $routeProvider.when('/proyecto/remove/:id', {templateUrl: 'js/proyecto/remove.html', controller: 'ProyectoRemoveController'});
+        $routeProvider.when('/proyecto/plist/:page?/:rpp?', {templateUrl: 'js/proyecto/plist.html', controller: 'ProyectoPListController'});
+        $routeProvider.when('/proyecto/selection/:page?/:rpp?', {templateUrl: 'js/proyecto/selection.html', controller: 'ProyectoSelectionController'});
+        //------------
+        
         
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
@@ -175,6 +184,7 @@ var moduloAviso = angular.module('avisoControllers', []);
 var moduloValoracion = angular.module('valoracionControllers', []);
 var moduloPrioridad = angular.module('prioridadControllers', []);
 var moduloEstado = angular.module('estadoControllers', []);
+var moduloProyecto = angular.module('proyectoControllers', []);
 //-------------
 var moduloDirectivas = angular.module('Directives', []);
 var moduloServicios = angular.module('Services', []);
