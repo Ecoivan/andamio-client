@@ -43,6 +43,7 @@ var andamio = angular.module('myApp', [
     'prioridadControllers',
     'proyectoControllers',
     'estadoControllers',
+    'tareaControllers',
     'ui.bootstrap',
     'ngSanitize'
 ]);
@@ -138,7 +139,13 @@ andamio.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/proyecto/plist/:page?/:rpp?', {templateUrl: 'js/proyecto/plist.html', controller: 'ProyectoPListController'});
         $routeProvider.when('/proyecto/selection/:page?/:rpp?', {templateUrl: 'js/proyecto/selection.html', controller: 'ProyectoSelectionController'});
         //------------
-        
+        $routeProvider.when('/tarea/view/:id', {templateUrl: 'js/tarea/view.html', controller: 'TareaViewController'});
+        $routeProvider.when('/tarea/new/:id?', {templateUrl: 'js/tarea/new.html', controller: 'TareaNewController'});
+        $routeProvider.when('/tarea/edit/:id', {templateUrl: 'js/tarea/edit.html', controller: 'TareaEditController'});
+        $routeProvider.when('/tarea/remove/:id', {templateUrl: 'js/tarea/remove.html', controller: 'TareaRemoveController'});
+        $routeProvider.when('/tarea/plist/:page?/:rpp?', {templateUrl: 'js/tarea/plist.html', controller: 'TareaPListController'});
+        $routeProvider.when('/tarea/selection/:page?/:rpp?', {templateUrl: 'js/tarea/selection.html', controller: 'TareaSelectionController'});
+        //------------
         
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
@@ -185,6 +192,7 @@ var moduloValoracion = angular.module('valoracionControllers', []);
 var moduloPrioridad = angular.module('prioridadControllers', []);
 var moduloEstado = angular.module('estadoControllers', []);
 var moduloProyecto = angular.module('proyectoControllers', []);
+var moduloTarea = angular.module('tareaControllers', []);
 //-------------
 var moduloDirectivas = angular.module('Directives', []);
 var moduloServicios = angular.module('Services', []);
